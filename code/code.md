@@ -1,3 +1,3 @@
 # Code
 
-Information about documents added to this folder.
+Two scripts required to replicate procedure outlines in paper. The first ('RScript.r') executes the main program and calls functions from the second script ('functions.r').

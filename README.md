@@ -1,12 +1,12 @@
-# Project Title
+# FORMBLOOM - Forecasting
 
 ## Summary
 
-Provide a brief description of the project - 150-300 words.
+The aim of the FORMBLOOM Forecasting work group is to develop simple statistical and machine learning forecasting models from high frequency time series data collected on in situ buoys. 
 
 ## Highly Qualified Personnel
 
-- Name, Institution, email, ORCID 0000-0000-0000-0000
+- Michael Kehoe, University of Saskatchewan, kehoe.michael@gmail.com, ORCID 0000-0002-5281-5821
 
 ## Principle Investigators
 

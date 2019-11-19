@@ -43,7 +43,6 @@ PredictModels<-function(models,newdatas,AttrCol,RespCol){
 
     responses=cbind(responses,preds)
   }
-  #return(list(rsqs,rmses,cors))
   responses=cbind(newdatas[,6],responses)
   return((responses))
 }

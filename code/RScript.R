@@ -8,12 +8,6 @@ setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("Functions.r")
 DATAPATH="ModellingData/"
 
-Datas1617181415_1d<-read.csv(paste(DATAPATH,"Datas1617181415_1d.csv",sep=""))
-Datas14151617_18_1d<-read.csv(paste(DATAPATH,"Datas14151617_18_1d.csv",sep=""))
-Datas18141516_17_1d<-read.csv(paste(DATAPATH,"Datas18141516_17_1d.csv",sep=""))
-Datas17181415_16_1d<-read.csv(paste(DATAPATH,"Datas17181415_16_1d.csv",sep=""))
-Datas16171814_15_1d<-read.csv(paste(DATAPATH,"Datas16171814_15_1d.csv",sep=""))
-Datas16171815_14_1d<-read.csv(paste(DATAPATH,"Datas16171815_14_1d.csv",sep=""))
 
 Datas_18_1d<-read.csv(paste(DATAPATH,"Datas_18_1d.csv",sep=""))
 Datas_17_1d<-read.csv(paste(DATAPATH,"Datas_17_1d.csv",sep=""))
@@ -21,12 +15,13 @@ Datas_16_1d<-read.csv(paste(DATAPATH,"Datas_16_1d.csv",sep=""))
 Datas_15_1d<-read.csv(paste(DATAPATH,"Datas_15_1d.csv",sep=""))
 Datas_14_1d<-read.csv(paste(DATAPATH,"Datas_14_1d.csv",sep=""))
 
-Datas1617181415_4d<-read.csv(paste(DATAPATH,"Datas1617181415_4d.csv",sep=""))
-Datas14151617_18_4d<-read.csv(paste(DATAPATH,"Datas14151617_18_4d.csv",sep=""))
-Datas18141516_17_4d<-read.csv(paste(DATAPATH,"Datas18141516_17_4d.csv",sep=""))
-Datas17181415_16_4d<-read.csv(paste(DATAPATH,"Datas17181415_16_4d.csv",sep=""))
-Datas16171814_15_4d<-read.csv(paste(DATAPATH,"Datas16171814_15_4d.csv",sep=""))
-Datas16171815_14_4d<-read.csv(paste(DATAPATH,"Datas16171815_14_4d.csv",sep=""))
+Datas1617181415_1d<-rbind(Datas_16_1d,Datas_17_1d,Datas_18_1d,Datas_14_1d,Datas_15_1d)
+Datas14151617_18_1d<-rbind(Datas_14_1d,Datas_15_1d,Datas_16_1d,Datas_17_1d)
+Datas18141516_17_1d<-rbind(Datas_18_1d,Datas_14_1d,Datas_15_1d,Datas_16_1d)
+Datas17181415_16_1d<-rbind(Datas_17_1d,Datas_18_1d,Datas_14_1d,Datas_15_1d)
+Datas16171814_15_1d<-rbind(Datas_16_1d,Datas_17_1d,Datas_18_1d,Datas_14_1d)
+Datas16171815_14_1d<-rbind(Datas_16_1d,Datas_17_1d,Datas_18_1d,Datas_15_1d)
+
 
 Datas_18_4d<-read.csv(paste(DATAPATH,"Datas_18_4d.csv",sep=""))
 Datas_17_4d<-read.csv(paste(DATAPATH,"Datas_17_4d.csv",sep=""))
@@ -34,12 +29,13 @@ Datas_16_4d<-read.csv(paste(DATAPATH,"Datas_16_4d.csv",sep=""))
 Datas_15_4d<-read.csv(paste(DATAPATH,"Datas_15_4d.csv",sep=""))
 Datas_14_4d<-read.csv(paste(DATAPATH,"Datas_14_4d.csv",sep=""))
 
-Datas1617181415_7d<-read.csv(paste(DATAPATH,"Datas1617181415_7d.csv",sep=""))
-Datas14151617_18_7d<-read.csv(paste(DATAPATH,"Datas14151617_18_7d.csv",sep=""))
-Datas18141516_17_7d<-read.csv(paste(DATAPATH,"Datas18141516_17_7d.csv",sep=""))
-Datas17181415_16_7d<-read.csv(paste(DATAPATH,"Datas17181415_16_7d.csv",sep=""))
-Datas16171814_15_7d<-read.csv(paste(DATAPATH,"Datas16171814_15_7d.csv",sep=""))
-Datas16171815_14_7d<-read.csv(paste(DATAPATH,"Datas16171815_14_7d.csv",sep=""))
+Datas1617181415_4d<-rbind(Datas_16_4d,Datas_17_4d,Datas_18_4d,Datas_14_4d,Datas_15_4d)
+Datas14151617_18_4d<-rbind(Datas_14_4d,Datas_15_4d,Datas_16_4d,Datas_17_4d)
+Datas18141516_17_4d<-rbind(Datas_18_4d,Datas_14_4d,Datas_15_4d,Datas_16_4d)
+Datas17181415_16_4d<-rbind(Datas_17_4d,Datas_18_4d,Datas_14_4d,Datas_15_4d)
+Datas16171814_15_4d<-rbind(Datas_16_4d,Datas_17_4d,Datas_18_4d,Datas_14_4d)
+Datas16171815_14_4d<-rbind(Datas_16_4d,Datas_17_4d,Datas_18_4d,Datas_15_4d)
+
 
 Datas_18_7d<-read.csv(paste(DATAPATH,"Datas_18_7d.csv",sep=""))
 Datas_17_7d<-read.csv(paste(DATAPATH,"Datas_17_7d.csv",sep=""))
@@ -47,18 +43,28 @@ Datas_16_7d<-read.csv(paste(DATAPATH,"Datas_16_7d.csv",sep=""))
 Datas_15_7d<-read.csv(paste(DATAPATH,"Datas_15_7d.csv",sep=""))
 Datas_14_7d<-read.csv(paste(DATAPATH,"Datas_14_7d.csv",sep=""))
 
-Datas1617181415_14d<-read.csv(paste(DATAPATH,"Datas1617181415_14d.csv",sep=""))
-Datas14151617_18_14d<-read.csv(paste(DATAPATH,"Datas14151617_18_14d.csv",sep=""))
-Datas18141516_17_14d<-read.csv(paste(DATAPATH,"Datas18141516_17_14d.csv",sep=""))
-Datas17181415_16_14d<-read.csv(paste(DATAPATH,"Datas17181415_16_14d.csv",sep=""))
-Datas16171814_15_14d<-read.csv(paste(DATAPATH,"Datas16171814_15_14d.csv",sep=""))
-Datas16171815_14_14d<-read.csv(paste(DATAPATH,"Datas16171815_14_14d.csv",sep=""))
+Datas1617181415_7d<-rbind(Datas_16_7d,Datas_17_7d,Datas_18_7d,Datas_14_7d,Datas_15_7d)
+Datas14151617_18_7d<-rbind(Datas_14_7d,Datas_15_7d,Datas_16_7d,Datas_17_7d)
+Datas18141516_17_7d<-rbind(Datas_18_7d,Datas_14_7d,Datas_15_7d,Datas_16_7d)
+Datas17181415_16_7d<-rbind(Datas_17_7d,Datas_18_7d,Datas_14_7d,Datas_15_7d)
+Datas16171814_15_7d<-rbind(Datas_16_7d,Datas_17_7d,Datas_18_7d,Datas_14_7d)
+Datas16171815_14_7d<-rbind(Datas_16_7d,Datas_17_7d,Datas_18_7d,Datas_15_7d)
+
 
 Datas_18_14d<-read.csv(paste(DATAPATH,"Datas_18_14d.csv",sep=""))
 Datas_17_14d<-read.csv(paste(DATAPATH,"Datas_17_14d.csv",sep=""))
 Datas_16_14d<-read.csv(paste(DATAPATH,"Datas_16_14d.csv",sep=""))
 Datas_15_14d<-read.csv(paste(DATAPATH,"Datas_15_14d.csv",sep=""))
 Datas_14_14d<-read.csv(paste(DATAPATH,"Datas_14_14d.csv",sep=""))
+
+Datas1617181415_14d<-rbind(Datas_16_14d,Datas_17_14d,Datas_18_14d,Datas_14_14d,Datas_15_14d)
+Datas14151617_18_14d<-rbind(Datas_14_14d,Datas_15_14d,Datas_16_14d,Datas_17_14d)
+Datas18141516_17_14d<-rbind(Datas_18_14d,Datas_14_14d,Datas_15_14d,Datas_16_14d)
+Datas17181415_16_14d<-rbind(Datas_17_14d,Datas_18_14d,Datas_14_14d,Datas_15_14d)
+Datas16171814_15_14d<-rbind(Datas_16_14d,Datas_17_14d,Datas_18_14d,Datas_14_14d)
+Datas16171815_14_14d<-rbind(Datas_16_14d,Datas_17_14d,Datas_18_14d,Datas_15_14d)
+
+
 
 # Attribute and response columns for xgboost models
 Attr=c(6,7,8,10,11,12,13)

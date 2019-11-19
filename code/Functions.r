@@ -1,3 +1,13 @@
+rmse<-function(X,Y){
+  out=sqrt(sum((X-Y)^2,na.rm=TRUE)/length(X[!is.na(X)]))/(max(X,na.rm=TRUE)-min(X,na.rm=TRUE))
+  return(out)
+}
+
+rsq<-function(X,Y){
+  out=1-(sum((X-Y)^2,na.rm=TRUE)/sum((X-mean(X,na.rm=TRUE))^2))
+  return(out)
+}
+
 
 CalibrateModel<-function(Datas,AttrCol,RespCol){
 
@@ -23,20 +33,14 @@ PredictModels<-function(models,newdatas,AttrCol,RespCol){
   response=newdatas[,RespCol]
   responses=response
   preds=newdatas[,AttrCol[1]]
-  # rmses<-rmse((response),(preds))
-  #  rsqs<-rsq((response),(preds))
-  # cors<-cor((response),(preds))
-  
+
   for (m in 1:length(models)){
     if(m == 4 | m == 2){
       preds=predict(models[[m]],newdata=as.matrix(newdatas[,AttrCol]))
     }else{
       preds=predict(models[[m]],newdata=data.frame(newdatas[,AttrCol]))
     }
-    #rsqs=c(rsqs,rsq((response),(preds)))
-    #rmses=c(rmses,rmse((response),(preds)))
-    #cors=c(cors,cor((response),(preds)))
-    
+
     responses=cbind(responses,preds)
   }
   #return(list(rsqs,rmses,cors))

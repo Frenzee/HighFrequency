@@ -1,3 +1,3 @@
 # Clean Data
 
-Information about documents added to this folder.
+Data used to perform analysis. There are no other data.

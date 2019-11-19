@@ -6,7 +6,7 @@ library("pROC")
 
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("Functions.r")
-DATAPATH="ModellingData/"
+DATAPATH="../data/clean_data/"
 
 
 Datas_18_1d<-read.csv(paste(DATAPATH,"Datas_18_1d.csv",sep=""))

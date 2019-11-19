@@ -7,6 +7,7 @@ library("pROC")
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("Functions.r")
 DATAPATH="../data/clean_data/"
+OUTPATH="../output/"
 
 
 Datas_18_1d<-read.csv(paste(DATAPATH,"Datas_18_1d.csv",sep=""))
@@ -105,10 +106,10 @@ rmses_1day=rbind(E$rmses,D$rmses,C$rmses,B$rmses,A$rmses)
 
 Header=c("Dt","Rf","lm","blm","nlm","naive")
 
-write.table(x = round(rocs_1day[,c(2,3,4,5,6,1)],digits=2),file = 'rocs_1day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(cors_1day[,c(2,3,4,5,6,1)],digits=2),file = 'cors_1day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(rsqs_1day[,c(2,3,4,5,6,1)],digits=2),file = 'rsqs_1day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(rmses_1day[,c(2,3,4,5,6,1)],digits=2),file = 'rmses_1day.csv',row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rocs_1day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rocs_1day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(cors_1day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'cors_1day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rsqs_1day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rsqs_1day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rmses_1day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rmses_1day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
 
 
 
@@ -119,11 +120,6 @@ Models.18141516_17_4d=CalibrateModel(Datas18141516_17_4d,AttrCol=Attr,RespCol=Re
 Models.17181415_16_4d=CalibrateModel(Datas17181415_16_4d,AttrCol=Attr,RespCol=Resp)
 Models.16171814_15_4d=CalibrateModel(Datas16171814_15_4d,AttrCol=Attr,RespCol=Resp)
 Models.16171815_14_4d=CalibrateModel(Datas16171815_14_4d,AttrCol=Attr,RespCol=Resp)
-
-Models.151617_18_4d=CalibrateModel(Datas151617_18_4d,AttrCol=Attr,RespCol=Resp)
-Models.181516_17_4d=CalibrateModel(Datas181516_17_4d,AttrCol=Attr,RespCol=Resp)
-Models.171815_16_4d=CalibrateModel(Datas171815_16_4d,AttrCol=Attr,RespCol=Resp)
-Models.161718_15_4d=CalibrateModel(Datas161718_15_4d,AttrCol=Attr,RespCol=Resp)
 
 Pred.14151617_18_4d=PredictModels(Models.14151617_18_4d,newdata=(Datas_18_4d),AttrCol=Attr,RespCol=Resp)
 Pred.18141516_17_4d=PredictModels(Models.18141516_17_4d,newdata=(Datas_17_4d),AttrCol=Attr,RespCol=Resp)
@@ -145,10 +141,13 @@ rmses_4day=rbind(E$rmses,D$rmses,C$rmses,B$rmses,A$rmses)
 
 Header=c("Dt","Rf","lm","blm","nlm","naive")
 
-write.table(x = round(rocs_4day[,c(2,3,4,5,6,1)],digits=2),file = 'rocs_4day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(cors_4day[,c(2,3,4,5,6,1)],digits=2),file = 'cors_4day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(rsqs_4day[,c(2,3,4,5,6,1)],digits=2),file = 'rsqs_4day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(rmses_4day[,c(2,3,4,5,6,1)],digits=2),file = 'rmses_4day.csv',row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rocs_4day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rocs_4day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(cors_4day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'cors_4day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rsqs_4day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rsqs_4day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rmses_4day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rmses_4day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+
+
+
 
 #Calibrate Datas_7d
 
@@ -157,11 +156,6 @@ Models.18141516_17_7d=CalibrateModel(Datas18141516_17_7d,AttrCol=Attr,RespCol=Re
 Models.17181415_16_7d=CalibrateModel(Datas17181415_16_7d,AttrCol=Attr,RespCol=Resp)
 Models.16171814_15_7d=CalibrateModel(Datas16171814_15_7d,AttrCol=Attr,RespCol=Resp)
 Models.16171815_14_7d=CalibrateModel(Datas16171815_14_7d,AttrCol=Attr,RespCol=Resp)
-
-Models.151617_18_7d=CalibrateModel(Datas151617_18_7d,AttrCol=Attr,RespCol=Resp)
-Models.181516_17_7d=CalibrateModel(Datas181516_17_7d,AttrCol=Attr,RespCol=Resp)
-Models.171815_16_7d=CalibrateModel(Datas171815_16_7d,AttrCol=Attr,RespCol=Resp)
-Models.161718_15_7d=CalibrateModel(Datas161718_15_7d,AttrCol=Attr,RespCol=Resp)
 
 Pred.14151617_18_7d=PredictModels(Models.14151617_18_7d,newdata=(Datas_18_7d),AttrCol=Attr,RespCol=Resp)
 Pred.18141516_17_7d=PredictModels(Models.18141516_17_7d,newdata=(Datas_17_7d),AttrCol=Attr,RespCol=Resp)
@@ -183,10 +177,14 @@ rmses_7day=rbind(E$rmses,D$rmses,C$rmses,B$rmses,A$rmses)
 
 Header=c("Dt","Rf","lm","blm","nlm","naive")
 
-write.table(x = round(rocs_7day[,c(2,3,4,5,6,1)],digits=2),file = 'rocs_7day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(cors_7day[,c(2,3,4,5,6,1)],digits=2),file = 'cors_7day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(rsqs_7day[,c(2,3,4,5,6,1)],digits=2),file = 'rsqs_7day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(rmses_7day[,c(2,3,4,5,6,1)],digits=2),file = 'rmses_7day.csv',row.names = FALSE,col.names = Header,sep=",")
+
+write.table(x = round(rocs_7day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rocs_7day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(cors_7day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'cors_7day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rsqs_7day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rsqs_7day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rmses_7day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rmses_7day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+
+
+
 
 # Calibrate Datas_14d
 
@@ -217,7 +215,10 @@ rmses_14day=rbind(E$rmses,D$rmses,C$rmses,B$rmses,A$rmses)
 
 Header=c("Dt","Rf","lm","blm","nlm","naive")
 
-write.table(x = round(rocs_14day[,c(2,3,4,5,6,1)],digits=2),file = 'rocs_14day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(cors_14day[,c(2,3,4,5,6,1)],digits=2),file = 'cors_14day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(rsqs_14day[,c(2,3,4,5,6,1)],digits=2),file = 'rsqs_14day.csv',row.names = FALSE,col.names = Header,sep=",")
-write.table(x = round(rmses_14day[,c(2,3,4,5,6,1)],digits=2),file = 'rmses_14day.csv',row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rocs_14day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rocs_14day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(cors_14day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'cors_14day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rsqs_14day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rsqs_14day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+write.table(x = round(rmses_14day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rmses_14day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+
+
+

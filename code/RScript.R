@@ -68,7 +68,7 @@ Datas16171815_14_14d<-rbind(Datas_16_14d,Datas_17_14d,Datas_18_14d,Datas_15_14d)
 
 
 # Attribute and response columns for xgboost models
-Attr=c(6,7,8,10,11,12,13)
+Attr=c(6,7,8,9,10,11,12,13)
 Resp=5
 
 # Calibrate entire dataset

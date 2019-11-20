@@ -11,13 +11,13 @@ rsq<-function(X,Y){
 
 CalibrateModel<-function(Datas,AttrCol,RespCol){
 
-  FUNC=BGAFutureL~BGANowL+Temp+PAR+Wind+TempDiff+TempAcc+TempJerk
+  FUNC=BGAFutureL~BGANowL+Temp+PAR+Wind+Stability+TempDiff+TempAcc+TempJerk
   FUNC2=BGAFutureL~BGANowL+Temp+PAR+Wind
 
-  Func4=BGAFutureL~A*exp(a*Temp)*PAR/(PAR+Ik*Temp+PAR^2/B)+E*BGANowL+FF*Wind+G*TempDiff+H*TempAcc-C+D*TempJerk
+  Func4=BGAFutureL~A*exp(a*Temp)*PAR/(PAR+Ik*Temp+PAR^2/B)+E*BGANowL+FF*Wind+G*TempDiff+H*TempAcc-C+D*TempJerk+M*Stability
   Controls=nls.lm.control(maxiter=1024,maxfev=30000)
   
-  model.nls=nlsLM(Func4,data=Datas,start=list(A=9.087191e-03,a=1.396031e-01,Ik=1.765282e-02,B=2.874222e+03,C= 0.000000e+00,E= 9.757346e-01,FF=6.399118e-03,G= 3.164789e+0,H= 6.396827e+02,D=0),lower=c(0,0,0,0,0,0,-0.01,0,0,0),control=Controls)
+  model.nls=nlsLM(Func4,data=Datas,start=list(A=9.087191e-03,a=1.396031e-01,Ik=1.765282e-02,B=2.874222e+03,C= 0.000000e+00,E= 9.757346e-01,FF=6.399118e-03,G= 3.164789e+0,H= 6.396827e+02,D=0,M=0),lower=c(0,0,0,0,0,0,-0.01,0,0,0,-1),control=Controls)
   model.lm=lm(FUNC,data=Datas)
   model.dt=rpart(FUNC,data=Datas)
   ddata=NULL

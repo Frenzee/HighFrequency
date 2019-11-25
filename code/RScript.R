@@ -3,6 +3,7 @@ library("rpart")
 library("minpack.lm")
 library("xgboost")
 library("pROC")
+library("bestglm")
 
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("Functions.r")
@@ -68,13 +69,20 @@ Datas16171815_14_14d<-rbind(Datas_16_14d,Datas_17_14d,Datas_18_14d,Datas_15_14d)
 
 
 # Attribute and response columns for xgboost models
-Attr=c(6,7,8,9,10,11,12,13)
+Attr=c(6,7,8,9,10,11,12,18,19,20)
 Resp=5
 
 # Calibrate entire dataset
 Models.whole.1d=CalibrateModel(Datas1617181415_1d,AttrCol=Attr,RespCol=Resp)
 Models.whole.4d=CalibrateModel(Datas1617181415_4d,AttrCol=Attr,RespCol=Resp)
 Models.whole.7d=CalibrateModel(Datas1617181415_7d,AttrCol=Attr,RespCol=Resp)
+Models.whole.14d=CalibrateModel(Datas1617181415_14d,AttrCol=Attr,RespCol=Resp)
+
+#best glm
+X=Datas1617181415_1d[,Attr]
+y=Datas1617181415_1d[,Resp]
+
+bestglm(cbind(X,y),IC="BIC")
 
 
 #Calibrate Datas_1d

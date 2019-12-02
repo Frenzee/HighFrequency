@@ -82,7 +82,7 @@ Models.whole.14d=CalibrateModel(Datas1617181415_14d,AttrCol=Attr,RespCol=Resp)
 X=Datas1617181415_1d[,Attr]
 y=Datas1617181415_1d[,Resp]
 
-bestglm(cbind(X,y),IC="BIC")
+bestglm(cbind(X,y),IC="AIC")
 
 
 #Calibrate Datas_1d

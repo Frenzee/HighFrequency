@@ -15,7 +15,7 @@ CalibrateModel<-function(Datas,AttrCol,RespCol){
   #FUNC=BGAFutureL~BGANowL+Temp+PAR
   FUNC2=BGAFutureL~BGANowL+Temp+PAR+Wind
 
-  Func4=BGAFutureL~A*exp(a*Temp)*PAR/(PAR+Ik*Temp+PAR^2/B)+E*BGANowL+FF*Wind+G*TempDiff+H*TempAcc-C+D*Turb+M*Stability+L*Cond
+  Func4=BGAFutureL~A*exp(a*Temp)*PAR/(PAR+Ik+PAR^2/B)+E*BGANowL+FF*Wind+G*TempDiff+H*TempAcc-C+D*Turb+M*Stability+L*Cond
   #Func4=BGAFutureL~A*exp(a*Temp)*PAR/(PAR+Ik*Temp+PAR^2/B)+E*BGANowL+FF*Wind+G*TempDiff+H*TempAcc-C
   Controls=nls.lm.control(maxiter=1024,maxfev=30000)
   

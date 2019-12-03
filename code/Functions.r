@@ -70,5 +70,21 @@ PerformanceCalc<-function(Dts,RespCol,PredCols){
   return(data.frame(rsqs,rmses,rocs,cors))
 }
 
-
+PanelFigureHFPaper<-function(Datas=Pred.14151617_18_4d,Dates=Datas_18_4d$Dates){
+  PlotData=data.frame(Datas,Dates)
+  names(PlotData)=c('Naive','Response','dt','bdt','lm','blm','nlm','Dates')
+  pp=ggplot(data=PlotData,aes(x=Dates))
+  p1=pp+geom_line(aes(y=dt))+ theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.title.y=element_blank())+ylab("A")
+  p1=p1+geom_line(aes(y=Response),color="grey")
+  p2=pp+geom_line(aes(y=bdt))+ theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.title.y=element_blank())+ylab("A")
+  p2=p2+geom_line(aes(y=Response),color="grey")
+  p3=pp+geom_line(aes(y=lm))+ theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.title.y=element_blank())+ylab("A")
+  p3=p3+geom_line(aes(y=Response),color="grey")
+  p4=pp+geom_line(aes(y=blm))+ theme(axis.title.x=element_blank(),axis.text.x=element_blank(),axis.title.y=element_blank())+ylab("A")
+  p4=p4+geom_line(aes(y=Response),color="grey")
+  p5=pp+geom_line(aes(y=nlm))+ theme(axis.title.y=element_blank(),axis.title.x=element_blank())+ylab("A")
+  p5=p5+geom_line(aes(y=Response),color="grey")
+  out=plot_grid(p1,p2,p3,p4,p5,labels=c("A","B","C","D","E"),align="v",ncol = 1,label_x=0.12,rel_heights = c(1,1,1,1,1.15))
+  return(out)
+}
 

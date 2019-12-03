@@ -4,6 +4,7 @@ library("minpack.lm")
 library("xgboost")
 library("pROC")
 library("bestglm")
+library("gridExtra")
 
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
 source("Functions.r")
@@ -227,6 +228,111 @@ write.table(x = round(rocs_14day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH
 write.table(x = round(cors_14day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'cors_14day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
 write.table(x = round(rsqs_14day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rsqs_14day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
 write.table(x = round(rmses_14day[,c(2,3,4,5,6,1)],digits=2),file = paste(OUTPATH,'rmses_14day.csv',sep=""),row.names = FALSE,col.names = Header,sep=",")
+
+
+################################################################
+
+#Plot for figure 1 of high frequency paper
+Ydays=as.POSIXlt(Datas1617181415_1d$Dates)$yday+as.POSIXlt(Datas1617181415_1d$Dates)$hour/24+(as.POSIXlt(Datas1617181415_1d$Dates)$min/(60*24))
+plotData=data.frame(Dates=Datas1617181415_1d$Dates,BGA=exp(Datas1617181415_1d$BGANowL),Yday=Ydays,Year=as.numeric(format(as.POSIXlt(Datas1617181415_1d$Dates), "%Y")))
+plotData$CommonDate <- as.Date(paste("2016-",format(plotData$Dates, "%j")), "%Y-%j")
+
+p1=ggplot(data=plotData,aes(x = Ydays,y=BGA,color=as.factor(Year)))
+p1+geom_line()+scale_x_continuous(breaks=c(152,183,214,245,275), labels=c("Jun","July","Aug","Sept","Oct"))
+
+
+#Panel plots of 1d forecasts
+Bp14_1dPlot<-PanelFigureHFPaper(Datas=Pred.16171815_14_1d,Dates=as.POSIXlt(Datas_14_1d$Dates))
+Bp14_1dPlot<-grid.arrange(Bp14_1dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp14_1dPlot.eps",Bp14_1dPlot,base_width=5,base_height = 7)
+
+Bp15_1dPlot<-PanelFigureHFPaper(Datas=Pred.16171814_15_1d,Dates=as.POSIXlt(Datas_15_1d$Dates))
+Bp15_1dPlot<-grid.arrange(Bp15_1dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp15_1dPlot.eps",Bp15_1dPlot,base_width=5,base_height = 7)
+
+
+Bp16_1dPlot<-PanelFigureHFPaper(Datas=Pred.17181415_16_1d,Dates=as.POSIXlt(Datas_16_1d$Dates))
+Bp16_1dPlot<-grid.arrange(Bp16_1dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp16_1dPlot.eps",Bp16_1dPlot,base_width=5,base_height = 7)
+
+Bp17_1dPlot<-PanelFigureHFPaper(Datas=Pred.18141516_17_1d,Dates=as.POSIXlt(Datas_17_1d$Dates))
+Bp17_1dPlot<-grid.arrange(Bp17_1dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp17_1dPlot.eps",Bp17_1dPlot,base_width=5,base_height = 7)
+
+Bp18_1dPlot<-PanelFigureHFPaper(Datas=Pred.14151617_18_1d,Dates=as.POSIXlt(Datas_18_1d$Dates))
+Bp18_1dPlot<-grid.arrange(Bp18_1dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp18_1dPlot.eps",Bp18_1dPlot,base_width=5,base_height = 7)
+
+
+#Panel plots of 4d forecasts
+
+Bp14_4dPlot<-PanelFigureHFPaper(Datas=Pred.16171815_14_4d,Dates=as.POSIXlt(Datas_14_4d$Dates))
+Bp14_4dPlot<-grid.arrange(Bp14_4dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp14_4dPlot.eps",Bp14_4dPlot,base_width=5,base_height = 7)
+
+Bp15_4dPlot<-PanelFigureHFPaper(Datas=Pred.16171814_15_4d,Dates=as.POSIXlt(Datas_15_4d$Dates))
+Bp15_4dPlot<-grid.arrange(Bp15_4dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp15_4dPlot.eps",Bp15_4dPlot,base_width=5,base_height = 7)
+
+Bp16_4dPlot<-PanelFigureHFPaper(Datas=Pred.17181415_16_4d,Dates=as.POSIXlt(Datas_16_4d$Dates))
+Bp16_4dPlot<-grid.arrange(Bp16_4dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp16_4dPlot.eps",Bp16_4dPlot,base_width=5,base_height = 7)
+
+Bp17_4dPlot<-PanelFigureHFPaper(Datas=Pred.18141516_17_4d,Dates=as.POSIXlt(Datas_17_4d$Dates))
+Bp17_4dPlot<-grid.arrange(Bp17_4dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp17_4dPlot.eps",Bp17_4dPlot,base_width=5,base_height = 7)
+
+Bp18_4dPlot<-PanelFigureHFPaper(Datas=Pred.14151617_18_4d,Dates=as.POSIXlt(Datas_18_4d$Dates))
+Bp18_4dPlot<-grid.arrange(Bp18_4dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp18_4dPlot.eps",Bp18_4dPlot,base_width=5,base_height = 7)
+
+#Panel plots of 7d forecasts
+
+Bp14_7dPlot<-PanelFigureHFPaper(Datas=Pred.16171815_14_7d,Dates=as.POSIXlt(Datas_14_7d$Dates))
+Bp14_7dPlot<-grid.arrange(Bp14_7dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp14_7dPlot.eps",Bp14_7dPlot,base_width=5,base_height = 7)
+
+Bp15_7dPlot<-PanelFigureHFPaper(Datas=Pred.16171814_15_7d,Dates=as.POSIXlt(Datas_15_7d$Dates))
+Bp15_7dPlot<-grid.arrange(Bp15_7dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp15_7dPlot.eps",Bp15_7dPlot,base_width=5,base_height = 7)
+
+Bp16_7dPlot<-PanelFigureHFPaper(Datas=Pred.17181415_16_7d,Dates=as.POSIXlt(Datas_16_7d$Dates))
+Bp16_7dPlot<-grid.arrange(Bp16_7dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp16_7dPlot.eps",Bp16_7dPlot,base_width=5,base_height = 7)
+
+Bp17_7dPlot<-PanelFigureHFPaper(Datas=Pred.18141516_17_7d,Dates=as.POSIXlt(Datas_17_7d$Dates))
+Bp17_7dPlot<-grid.arrange(Bp17_7dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp17_7dPlot.eps",Bp17_7dPlot,base_width=5,base_height = 7)
+
+Bp18_7dPlot<-PanelFigureHFPaper(Datas=Pred.14151617_18_7d,Dates=as.POSIXlt(Datas_18_7d$Dates))
+Bp18_7dPlot<-grid.arrange(Bp18_7dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp18_7dPlot.eps",Bp18_7dPlot,base_width=5,base_height = 7)
+
+#Panel plots of 14d forecasts
+Bp14_14dPlot<-PanelFigureHFPaper(Datas=Pred.16171815_14_14d,Dates=as.POSIXlt(Datas_14_14d$Dates))
+Bp14_14dPlot<-grid.arrange(Bp14_14dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp14_14dPlot.eps",Bp14_14dPlot,base_width=5,base_height = 7)
+
+Bp15_14dPlot<-PanelFigureHFPaper(Datas=Pred.16171814_15_14d,Dates=as.POSIXlt(Datas_15_14d$Dates))
+Bp15_14dPlot<-grid.arrange(Bp15_14dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp15_14dPlot.eps",Bp15_14dPlot,base_width=5,base_height = 7)
+
+Bp16_14dPlot<-PanelFigureHFPaper(Datas=Pred.17181415_16_14d,Dates=as.POSIXlt(Datas_16_14d$Dates))
+Bp16_14dPlot<-grid.arrange(Bp16_14dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp16_14dPlot.eps",Bp16_14dPlot,base_width=5,base_height = 7)
+
+Bp17_14dPlot<-PanelFigureHFPaper(Datas=Pred.18141516_17_14d,Dates=as.POSIXlt(Datas_17_14d$Dates))
+Bp17_14dPlot<-grid.arrange(Bp17_14dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp17_14dPlot.eps",Bp17_14dPlot,base_width=5,base_height = 7)
+
+Bp18_14dPlot<-PanelFigureHFPaper(Datas=Pred.14151617_18_14d,Dates=as.POSIXlt(Datas_18_14d$Dates))
+Bp18_14dPlot<-grid.arrange(Bp18_14dPlot,left="ln(Phycocyanin fluorescence)",bottom="Month")
+save_plot("Bp18_14dPlot.eps",Bp18_14dPlot,base_width=5,base_height = 7)
+
+
+
+
+
 
 
 
